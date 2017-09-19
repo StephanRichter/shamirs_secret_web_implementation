@@ -2,7 +2,7 @@
 <head></head>
 <body>
 <script type="text/javascript">
-var prime = 257;
+var prime = 1237;
 
 /* Split number into the shares */
 function split(number, available, needed) {
@@ -54,9 +54,9 @@ function join(shares) {
     return accum;
 }
 
-var sh = split(129, 7, 6) /* split the secret value 129 into 6 components - at least 3 of which will be needed to figure out the secret value */
+var sh = split(1234, 6, 3) /* split the secret value 129 into 6 components - at least 3 of which will be needed to figure out the secret value */
 for (var i=0; i<sh.length; i++) alert(sh[i]);
-var newshares = [sh[1], sh[3], sh[4], sh[5], sh[2], sh[0],sh[6]]; /* pick any selection of 3 shared keys from sh */
+var newshares = [sh[1], sh[3], sh[4]]; /* pick any selection of 3 shared keys from sh */
 
 alert(join(newshares));
 
