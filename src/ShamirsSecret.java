@@ -33,11 +33,11 @@ public class ShamirsSecret {
 		}
 		
 		public Quotient times(Quotient q) throws InvalidParameterException{
-			return new Quotient(this.divident * q.divident,this.divisor * q.divisor);
+			return new Quotient(divident * q.divident,divisor * q.divisor);
 		}
 		
-		public Quotient times(int m) throws InvalidParameterException{
-			return new Quotient(this.divident * m,this.divisor);
+		public Quotient times(int f) throws InvalidParameterException{
+			return new Quotient(f*divident,divisor);
 		}
 		
 		@Override
@@ -59,7 +59,7 @@ public class ShamirsSecret {
 		}
 		
 		public int mod(int q) throws InvalidParameterException {
-			int inv = 0;
+			int inv = 1;
 			while ((divisor*inv)%q !=1)inv++; // search the inverse of the divisor			
 			return (divident*inv)%q;
 		}
@@ -109,14 +109,13 @@ public class ShamirsSecret {
 	}
 	
 	public static void main(String[] args) throws InvalidParameterException {
-		int secret = rand.nextInt(256);
+		int secret = rand.nextInt(255);
 		System.out.println(secret);
-		Vector<Share> shares = createSecrets(secret,6,3);		
+		Vector<Share> shares = createSecrets(secret,5,3);		
 		System.out.println(shares);
 		
-		shares.remove(1);
-		shares.remove(2);
-		shares.remove(3);
+		shares.remove(0);
+		shares.remove(0);
 		System.out.println(shares);
 		
 		secret=reconstruct(shares);
